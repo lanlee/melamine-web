@@ -6,7 +6,7 @@ interface AppProps { lang: "en" | "zh"; }
 
 const apps = [
   {
-    color: "#0ea5e9", bg: "rgba(14,165,233,0.08)",
+    color: "#6366f1", bg: "rgba(99,102,241,0.08)",
     icon: (
       <svg viewBox="0 0 32 32" fill="none" className="w-7 h-7">
         <rect x="3" y="7" width="26" height="20" rx="2" stroke="currentColor" strokeWidth="1.5"/>
@@ -72,7 +72,7 @@ const apps = [
     stat_zh: "提供REACH & RoHS合规等级",
   },
   {
-    color: "#10b981", bg: "rgba(16,185,129,0.08)",
+    color: "#6366f1", bg: "rgba(99,102,241,0.08)",
     icon: (
       <svg viewBox="0 0 32 32" fill="none" className="w-7 h-7">
         <circle cx="16" cy="16" r="12" stroke="currentColor" strokeWidth="1.5"/>
@@ -120,7 +120,7 @@ export default function Applications({ lang }: AppProps) {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <div className="text-[11px] font-bold tracking-[3px] uppercase text-[#0ea5e9] mb-4">
+          <div className="text-[11px] font-bold tracking-[3px] uppercase text-[#6366f1] mb-4">
             {lang === "en" ? "Real Use Cases" : "真实应用场景"}
           </div>
           <h2 className="text-4xl lg:text-5xl font-black tracking-tight text-slate-900 mb-4">

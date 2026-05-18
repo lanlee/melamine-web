@@ -30,8 +30,8 @@ const reasons = [
     num: "04",
     en: "Export Expertise",
     zh: "出口专业知识",
-    desc_en: "15+ years of export experience. We handle HS codes, REACH declarations, fumigation, and LC/TT payments seamlessly.",
-    desc_zh: "15年以上出口经验。我们无缝处理HS编码、REACH声明、熏蒸和信用证/电汇付款。",
+    desc_en: "25+ years of export experience. We handle HS codes, REACH declarations, fumigation, and LC/TT payments seamlessly.",
+    desc_zh: "25年以上出口经验。我们无缝处理HS编码、REACH声明、熏蒸和信用证/电汇付款。",
   },
   {
     num: "05",
@@ -65,8 +65,8 @@ export default function WhyUs({ lang }: WhyProps) {
             transition={{ duration: 0.7 }}
             className="lg:sticky lg:top-28"
           >
-            <div className="text-[11px] font-bold tracking-[3px] uppercase text-[#0ea5e9] mb-4">
-              {lang === "en" ? "Why Choose HC" : "为什么选择瀚成"}
+            <div className="text-[11px] font-bold tracking-[3px] uppercase text-[#6366f1] mb-4">
+              {lang === "en" ? "Why Choose HC" : "为什么选择翰成"}
             </div>
             <h2 className="text-4xl lg:text-5xl font-black tracking-tight leading-tight text-slate-900 mb-6">
               {lang === "en" ? "The Competitive Edge You Need" : "您需要的竞争优势"}
@@ -78,7 +78,7 @@ export default function WhyUs({ lang }: WhyProps) {
             </p>
             <a
               href="#contact"
-              className="inline-flex items-center gap-2 text-sm font-bold bg-[#0ea5e9] text-white px-6 py-3 rounded-full hover:bg-sky-600 transition-colors shadow-[0_4px_20px_rgba(14,165,233,0.3)]"
+              className="inline-flex items-center gap-2 text-sm font-bold bg-[#6366f1] text-white px-6 py-3 rounded-full hover:bg-[#4f46e5] transition-colors"
             >
               {lang === "en" ? "Get a Quote" : "获取报价"} →
             </a>

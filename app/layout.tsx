@@ -11,7 +11,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Guangdong HC Material Co., Ltd | Global Melamine Supplier",
   description:
-    "South China's largest melamine wholesaler. 3,000+ metric tons/month. Industrial-grade melamine powder and resin shipped to 40+ countries worldwide.",
+    "South China's largest melamine wholesaler. 3,000+ metric tons/month. Industrial-grade melamine powder shipped to 40+ countries worldwide.",
 };
 
 export default function RootLayout({

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   height="156.54974pt"
+   viewBox="0 0 221.67224 156.54974"
+   version="1.1"
+   width="221.67224pt"
+   id="svg138">
+  <metadata
+     id="metadata142">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Structural formula of melamine.eps</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <title
+     id="title77">Structural formula of melamine.eps</title>
+  <defs
+     id="defs82">
+    <clipPath
+       id="Clip0">
+      <path
+         d="M 0,0 H 206.672 V 141.55 H 0 Z"
+         id="path79" />
+    </clipPath>
+  </defs>
+  <g
+     id="Hintergrund"
+     transform="translate(9.6823149,-82.23632)">
+    <g
+       id="g173"
+       transform="translate(-6.4040243,85.786194)">
+      <g
+         style="fill:none;stroke:none"
+         transform="translate(4.22187,3.95)"
+         clip-rule="evenodd"
+         clip-path="url(#Clip0)"
+         id="Gruppe5">
+        <g
+           style="fill:none;stroke:none"
+           transform="translate(61.5406,59.55)"
+           id="Gruppe1">
+          <path
+             style="fill:#000000;fill-rule:nonzero;stroke:none"
+             d="M 13.6875,0 H 11.5781 V 14.7344 L 2.42188,0 H 0 V 18 H 2.10938 V 3.40625 L 11.1719,18 h 2.5156 z"
+             id="path84" />
+          <path
+             style="fill:#000000;fill-rule:nonzero;stroke:none"
+             d="M 13.6875,0 H 11.5781 V 14.7344 L 2.42188,0 H 0 V 18 H 2.10938 V 3.40625 L 11.1719,18 h 2.5156 z"
+             transform="translate(34.4,59.5)"
+             id="path86" />
+          <path
+             style="fill:#000000;fill-rule:nonzero;stroke:none"
+             d="M 13.6875,0 H 11.5781 V 14.7344 L 2.42188,0 H 0 V 18 H 2.10938 V 3.40625 L 11.1719,18 h 2.5156 z"
+             transform="translate(68.75)"
+             id="path88" />
+        </g>
+        <path
+           style="fill:#000000;fill-rule:nonzero;stroke:none"
+           d="M 1.7,27.55 0.85,28 0,27.55 V 0 h 1.7"
+           transform="translate(67.5781,79.75)"
+           id="path91" />
+        <path
+           style="fill:#000000;fill-rule:nonzero;stroke:none"
+           d="M 0,24.6 H 1.7 V 0 H 0 Z"
+           transform="translate(73.5281,79.75)"
+           id="path93" />
+        <path
+           style="fill:#000000;fill-rule:nonzero;stroke:none"
+           d="M 24.45,13.6 23.6,15.1 0,1.45 v -1 L 0.85,0"
+           transform="translate(68.4281,107.3)"
+           id="path95" />
+        <path
+           style="fill:#000000;fill-rule:nonzero;stroke:none"
+           d="m 23.75,0 0.85,0.45 v 1 L 0.85,15.15 0,13.7"
+           transform="translate(112.528,107.3)"
+           id="path97" />
+        <path
+           style="fill:#000000;fill-rule:nonzero;stroke:none"
+           d="M 21.2,0 22.05,1.45 0.85,13.7 0,12.25 Z"
+           transform="translate(109.578,103.6)"
+           id="path99" />
+        <path
+           style="fill:#000000;fill-rule:nonzero;stroke:none"
+           d="M 0,0 H 1.7 V 27.55 L 0.85,28 0,27.55"
+           transform="translate(136.278,79.75)"
+           id="path101" />
+        <path
+           style="fill:#000000;fill-rule:nonzero;stroke:none"
+           d="M 0,1.45 V 0.5 L 0.85,0 24.45,13.65 23.6,15.1"
+           transform="translate(102.778,47.75)"
+           id="path103" />
+        <path
+           style="fill:#000000;fill-rule:nonzero;stroke:none"
+           d="M 0,1.45 0.9,0 21.95,12.15 21.1,13.6 Z"
+           transform="translate(102.328,54.4)"
+           id="path105" />
+        <path
+           style="fill:#000000;fill-rule:nonzero;stroke:none"
+           d="M 0.85,15.2 0,13.7 23.75,0 24.6,0.5 v 0.95"
+           transform="translate(78.1781,47.75)"
+           id="path107" />
+        <g
+           style="fill:none;stroke:none"
+           transform="translate(95.9406)"
+           id="Gruppe2">
+          <path
+             style="fill:#000000;fill-rule:nonzero;stroke:none"
+             d="M 13.6875,0 H 11.5781 V 14.7344 L 2.42188,0 H 0 V 18 H 2.10938 V 3.40625 L 11.1719,18 h 2.5156 z"
+             id="path109" />
+          <path
+             style="fill:#000000;fill-rule:nonzero;stroke:none"
+             d="M 11.2344,9.96875 V 18 h 2.2344 V 0 H 11.2344 V 8 H 2.23438 V 0 H 0 V 18 H 2.23438 V 9.96875 Z"
+             transform="translate(17.4999)"
+             id="path111" />
+          <path
+             style="fill:#000000;fill-rule:nonzero;stroke:none"
+             d="M 8.5,11.4531 H 1.78125 C 1.9375,10.375 2.51562,9.6875 4.07812,8.73438 l 1.79688,-1 c 1.79688,-1 2.70312,-2.32813 2.70312,-3.92188 0,-1.07812 -0.42187,-2.09375 -1.1875,-2.79688 C 6.64062,0.328125 5.70312,0 4.5,0 2.875,0 1.67188,0.578125 0.96875,1.70312 0.515625,2.39062 0.3125,3.1875 0.28125,4.51562 H 1.875 C 1.92188,3.625 2.03125,3.10938 2.25,2.67188 2.65625,1.875 3.48438,1.39062 4.4375,1.39062 c 1.4375,0 2.53125,1.04688 2.53125,2.45313 0,1.04687 -0.59375,1.9375 -1.73437,2.59375 L 3.57812,7.40625 C 0.90625,8.9375 0.140625,10.1563 0,13 h 8.5 z"
+             transform="translate(33.4528,9.5)"
+             id="path113" />
+        </g>
+        <path
+           style="fill:#000000;fill-rule:nonzero;stroke:none"
+           d="M 0,0 H 1.7 V 27.55 L 0.85,28.05 0,27.55"
+           transform="translate(101.928,20.2)"
+           id="path116" />
+        <g
+           style="fill:none;stroke:none"
+           transform="translate(0,119.05)"
+           id="Gruppe3">
+          <path
+             style="fill:#000000;fill-rule:nonzero;stroke:none"
+             d="M 11.2344,9.96875 V 18 h 2.2344 V 0 H 11.2344 V 8 H 2.23438 V 0 H 0 V 18 H 2.23438 V 9.96875 Z"
+             id="path118" />
+          <path
+             style="fill:#000000;fill-rule:nonzero;stroke:none"
+             d="M 8.5,11.4531 H 1.78125 C 1.9375,10.375 2.51562,9.6875 4.07812,8.73438 l 1.79688,-1 c 1.79688,-1 2.70312,-2.32813 2.70312,-3.92188 0,-1.07812 -0.42187,-2.09375 -1.1875,-2.79688 C 6.64062,0.328125 5.70312,0 4.5,0 2.875,0 1.67188,0.578125 0.96875,1.70312 0.515625,2.39062 0.3125,3.1875 0.28125,4.51562 H 1.875 C 1.92188,3.625 2.03125,3.10938 2.25,2.67188 2.65625,1.875 3.48438,1.39062 4.4375,1.39062 c 1.4375,0 2.53125,1.04688 2.53125,2.45313 0,1.04687 -0.59375,1.9375 -1.73437,2.59375 L 3.57812,7.40625 C 0.90625,8.9375 0.140625,10.1562 0,13 h 8.5 z"
+             transform="translate(15.9531,9.5)"
+             id="path120" />
+          <path
+             style="fill:#000000;fill-rule:nonzero;stroke:none"
+             d="M 13.6875,0 H 11.5781 V 14.7344 L 2.42188,0 H 0 V 18 H 2.10938 V 3.40625 L 11.1719,18 h 2.5156 z"
+             transform="translate(27.164)"
+             id="path122" />
+        </g>
+        <path
+           style="fill:#000000;fill-rule:nonzero;stroke:none"
+           d="M 0.85,15.2 0,13.7 23.8,0 24.65,0.45 v 1"
+           transform="translate(43.7781,107.3)"
+           id="path125" />
+        <g
+           style="fill:none;stroke:none"
+           transform="translate(164.641,119.05)"
+           id="Gruppe4">
+          <path
+             style="fill:#000000;fill-rule:nonzero;stroke:none"
+             d="M 13.6875,0 H 11.5781 V 14.7344 L 2.42188,0 H 0 V 18 H 2.10938 V 3.40625 L 11.1719,18 h 2.5156 z"
+             id="path127" />
+          <path
+             style="fill:#000000;fill-rule:nonzero;stroke:none"
+             d="M 11.2344,9.96875 V 18 h 2.2344 V 0 H 11.2344 V 8 H 2.23438 V 0 H 0 V 18 H 2.23438 V 9.96875 Z"
+             transform="translate(17.4999)"
+             id="path129" />
+          <path
+             style="fill:#000000;fill-rule:nonzero;stroke:none"
+             d="M 8.5,11.4531 H 1.78125 C 1.9375,10.375 2.51562,9.6875 4.07812,8.73438 l 1.79688,-1 c 1.79688,-1 2.70312,-2.32813 2.70312,-3.92188 0,-1.07812 -0.42187,-2.09375 -1.1875,-2.79688 C 6.64062,0.328125 5.70312,0 4.5,0 2.875,0 1.67188,0.578125 0.96875,1.70312 0.515625,2.39062 0.3125,3.1875 0.28125,4.51562 H 1.875 C 1.92188,3.625 2.03125,3.10938 2.25,2.67188 2.65625,1.875 3.48438,1.39062 4.4375,1.39062 c 1.4375,0 2.53125,1.04688 2.53125,2.45313 0,1.04687 -0.59375,1.9375 -1.73437,2.59375 L 3.57812,7.40625 C 0.90625,8.9375 0.140625,10.1562 0,13 h 8.5 z"
+             transform="translate(33.4528,9.5)"
+             id="path131" />
+        </g>
+        <path
+           style="fill:#000000;fill-rule:nonzero;stroke:none"
+           d="M 24.5,13.6 23.65,15.1 0,1.45 v -1 L 0.85,0"
+           transform="translate(137.128,107.3)"
+           id="path134" />
+      </g>
+    </g>
+  </g>
+</svg>

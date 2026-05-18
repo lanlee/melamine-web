@@ -13,12 +13,17 @@ const regions = [
   { flag: "🇦🇺", en: "Oceania", zh: "大洋洲" },
 ];
 
-const destinations = [
-  { cx: 145, cy: 195, label: "EU" },
-  { cx: 95, cy: 145, label: "US" },
-  { cx: 250, cy: 195, label: "SEA" },
-  { cx: 195, cy: 245, label: "AF" },
-  { cx: 230, cy: 145, label: "ME" },
+// Guangzhou: upper-right region of globe (East Asia)
+const GZ = { cx: 258, cy: 162 };
+
+// Bezier arc routes from GZ to each world region
+const routes = [
+  { cx: 284, cy: 220, label: "SEA", delay: 0.2, d: "M 258 162 Q 308 142 284 220" },
+  { cx: 148, cy: 148, label: "ME",  delay: 0.5, d: "M 258 162 Q 232 88  148 148" },
+  { cx: 78,  cy: 108, label: "EU",  delay: 0.8, d: "M 258 162 Q 175 50  78  108" },
+  { cx: 50,  cy: 190, label: "US",  delay: 1.1, d: "M 258 162 Q 145 90  50  190" },
+  { cx: 122, cy: 258, label: "AF",  delay: 1.4, d: "M 258 162 Q 168 252 122 258" },
+  { cx: 295, cy: 272, label: "OC",  delay: 1.7, d: "M 258 162 Q 310 240 295 272" },
 ];
 
 export default function GlobalReach({ lang }: GlobalProps) {
@@ -36,7 +41,7 @@ export default function GlobalReach({ lang }: GlobalProps) {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7 }}
           >
-            <div className="text-[11px] font-bold tracking-[3px] uppercase text-[#0ea5e9] mb-4">
+            <div className="text-[11px] font-bold tracking-[3px] uppercase text-[#6366f1] mb-4">
               {lang === "en" ? "Global Reach" : "全球覆盖"}
             </div>
             <h2 className="text-4xl lg:text-5xl font-black tracking-tight leading-tight text-slate-900 mb-6">
@@ -44,13 +49,13 @@ export default function GlobalReach({ lang }: GlobalProps) {
             </h2>
             <p className="text-slate-500 text-base leading-loose mb-8">
               {lang === "en"
-                ? "Shipping via Nansha Port (Guangzhou) and Yantian Port (Shenzhen) with direct ocean freight routes to Southeast Asia, Europe, North America, the Middle East, and Africa."
-                : "通过广州南沙港和深圳盐田港发货，直达东南亚、欧洲、北美、中东和非洲的海运航线。"}
+                ? "Shipping via all major Chinese ports with direct ocean freight routes to Southeast Asia, Europe, North America, the Middle East, and Africa."
+                : "通过中国所有主要港口发货，直达东南亚、欧洲、北美、中东和非洲的海运航线。"}
             </p>
             <div className="flex flex-wrap gap-3 mb-10">
               {regions.map((r) => (
                 <div key={r.en}
-                  className="flex items-center gap-2 bg-white border border-slate-200 hover:border-sky-300 hover:bg-sky-50 px-4 py-2 rounded-full text-sm font-medium text-slate-600 transition-all duration-200 cursor-default shadow-sm"
+                  className="flex items-center gap-2 bg-white border border-slate-200 hover:border-indigo-300 hover:bg-indigo-50 px-4 py-2 rounded-full text-sm font-medium text-slate-600 transition-all duration-200 cursor-default"
                 >
                   <span>{r.flag}</span>
                   <span>{lang === "en" ? r.en : r.zh}</span>
@@ -59,70 +64,134 @@ export default function GlobalReach({ lang }: GlobalProps) {
             </div>
 
             <div className="grid grid-cols-2 gap-4">
-              <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
-                <div className="text-2xl font-black text-[#0ea5e9] mb-1">2–3 hrs</div>
+              <div className="bg-white border border-slate-200 rounded-xl p-5">
+                <div className="text-2xl font-black text-[#6366f1] mb-1">2–3 hrs</div>
                 <div className="text-slate-400 text-xs">{lang === "en" ? "Quote response time" : "报价响应时间"}</div>
               </div>
-              <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
-                <div className="text-2xl font-black text-[#0ea5e9] mb-1">15+ yrs</div>
+              <div className="bg-white border border-slate-200 rounded-xl p-5">
+                <div className="text-2xl font-black text-[#6366f1] mb-1">25+ yrs</div>
                 <div className="text-slate-400 text-xs">{lang === "en" ? "Export experience" : "出口经验"}</div>
               </div>
             </div>
           </motion.div>
 
-          {/* Globe visual */}
+          {/* Spinning Globe */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.92 }}
             animate={inView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.15 }}
             className="flex justify-center"
           >
             <div className="relative">
-              <div className="absolute inset-0 rounded-full bg-sky-100 blur-3xl opacity-60" />
-              <svg viewBox="0 0 360 360" className="w-72 h-72 sm:w-[360px] sm:h-[360px] relative" xmlns="http://www.w3.org/2000/svg">
+              <div className="absolute inset-0 rounded-full bg-indigo-100 blur-3xl opacity-70" />
+              <svg
+                viewBox="0 0 360 360"
+                className="w-72 h-72 sm:w-90 sm:h-90 relative"
+                xmlns="http://www.w3.org/2000/svg"
+              >
                 <defs>
-                  <radialGradient id="globeG" cx="38%" cy="35%" r="65%">
-                    <stop offset="0%" stopColor="#e0f2fe"/>
-                    <stop offset="100%" stopColor="#bae6fd"/>
+                  <radialGradient id="globeGrad" cx="36%" cy="32%" r="68%">
+                    <stop offset="0%" stopColor="#e0e7ff" />
+                    <stop offset="55%" stopColor="#c7d2fe" />
+                    <stop offset="100%" stopColor="#818cf8" />
                   </radialGradient>
-                  <clipPath id="globe-clip">
-                    <circle cx="180" cy="180" r="155"/>
+                  <clipPath id="globeClip">
+                    <circle cx="180" cy="180" r="150" />
                   </clipPath>
                 </defs>
 
-                {/* Globe sphere */}
-                <circle cx="180" cy="180" r="155" fill="url(#globeG)" stroke="#7dd3fc" strokeWidth="1.5"/>
+                {/* Sphere */}
+                <circle cx="180" cy="180" r="150" fill="url(#globeGrad)" />
 
-                {/* Grid lines */}
-                <g clipPath="url(#globe-clip)" opacity="0.4">
-                  {[0.25, 0.5, 0.75].map((t, i) => (
-                    <ellipse key={i} cx="180" cy={180 - 155 + 155 * 2 * t}
-                      rx={Math.sqrt(Math.max(0, 155 * 155 - Math.pow(155 - 155 * 2 * t, 2)))}
-                      ry={155 * 0.32} fill="none" stroke="#38bdf8" strokeWidth="0.8"/>
-                  ))}
-                  <line x1="180" y1="25" x2="180" y2="335" stroke="#38bdf8" strokeWidth="0.8"/>
-                  <path d="M 105 45 Q 180 180 105 315" fill="none" stroke="#38bdf8" strokeWidth="0.8"/>
-                  <path d="M 255 45 Q 180 180 255 315" fill="none" stroke="#38bdf8" strokeWidth="0.8"/>
+                {/* Spinning longitude lines */}
+                <g clipPath="url(#globeClip)">
+                  {[0, 30, 60, 90, 120, 150].map((angle) => {
+                    const rx = Math.max(2, 150 * Math.abs(Math.sin((angle * Math.PI) / 180)));
+                    return (
+                      <ellipse
+                        key={angle}
+                        cx="180" cy="180"
+                        rx={rx} ry="150"
+                        fill="none"
+                        stroke="#6366f1"
+                        strokeWidth="0.8"
+                        opacity="0.28"
+                      />
+                    );
+                  })}
                 </g>
 
-                {/* Guangzhou pulsing dot */}
-                <circle cx="265" cy="178" r="20" fill="#0ea5e9" opacity="0.12" className="animate-pulse-ring"/>
-                <circle cx="265" cy="178" r="9" fill="#0ea5e9"/>
-                <circle cx="265" cy="178" r="4" fill="white"/>
-                <text x="275" y="170" fill="#0369a1" fontSize="10" fontWeight="700">GZ</text>
+                {/* Static latitude lines */}
+                <g clipPath="url(#globeClip)">
+                  {[-60, -30, 0, 30, 60].map((lat) => {
+                    const rad = (lat * Math.PI) / 180;
+                    const y = 180 + 150 * Math.sin(rad);
+                    const rx = 150 * Math.cos(rad);
+                    return (
+                      <ellipse
+                        key={lat}
+                        cx="180" cy={y}
+                        rx={rx} ry={rx * 0.22}
+                        fill="none"
+                        stroke="#6366f1"
+                        strokeWidth={lat === 0 ? "1" : "0.7"}
+                        opacity={lat === 0 ? 0.4 : 0.25}
+                      />
+                    );
+                  })}
+                </g>
 
-                {/* Connection lines */}
-                {destinations.map((d, i) => (
-                  <g key={i}>
-                    <line x1="265" y1="178" x2={d.cx} y2={d.cy}
-                      stroke="#0ea5e9" strokeWidth="1.2" opacity="0.4" strokeDasharray="4 4"/>
-                    <circle cx={d.cx} cy={d.cy} r="6" fill="#8b5cf6" opacity="0.85"/>
-                    <circle cx={d.cx} cy={d.cy} r="10" fill="#8b5cf6" opacity="0.1"/>
-                    <text x={d.cx + 9} y={d.cy + 4} fill="#7c3aed" fontSize="8" fontWeight="600">{d.label}</text>
-                  </g>
+                {/* Sphere rim */}
+                <circle cx="180" cy="180" r="150" fill="none" stroke="#818cf8" strokeWidth="1.5" />
+                {/* Specular highlight */}
+                <ellipse cx="148" cy="146" rx="30" ry="20" fill="white" opacity="0.1" transform="rotate(-30 148 146)" />
+
+                {/* Animated arc routes from Guangzhou */}
+                {inView && routes.map((route) => (
+                  <motion.path
+                    key={route.label}
+                    d={route.d}
+                    fill="none"
+                    stroke="#6366f1"
+                    strokeWidth="1.4"
+                    strokeLinecap="round"
+                    opacity={0.65}
+                    initial={{ pathLength: 0 }}
+                    animate={{ pathLength: 1 }}
+                    transition={{ duration: 1.4, delay: route.delay, ease: "easeOut" }}
+                  />
                 ))}
+
+                {/* Destination dots — appear after arc finishes */}
+                {inView && routes.map((route) => (
+                  <motion.g
+                    key={`d-${route.label}`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.35, delay: route.delay + 1.35 }}
+                  >
+                    <circle cx={route.cx} cy={route.cy} r="12" fill="#6366f1" opacity="0.13" />
+                    <circle cx={route.cx} cy={route.cy} r="5" fill="#6366f1" />
+                    <circle cx={route.cx} cy={route.cy} r="2.2" fill="white" />
+                    <text x={route.cx + 8} y={route.cy + 4} fill="#4f46e5" fontSize="8" fontWeight="700">
+                      {route.label}
+                    </text>
+                  </motion.g>
+                ))}
+
+                {/* Guangzhou origin — pulsing ring */}
+                <motion.circle
+                  cx={GZ.cx} cy={GZ.cy} r="20"
+                  fill="#6366f1"
+                  animate={{ opacity: [0.08, 0.22, 0.08] }}
+                  transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+                />
+                <circle cx={GZ.cx} cy={GZ.cy} r="9" fill="#6366f1" />
+                <circle cx={GZ.cx} cy={GZ.cy} r="4" fill="white" />
+                <text x={GZ.cx + 12} y={GZ.cy + 4} fill="#4f46e5" fontSize="10" fontWeight="800">GZ</text>
               </svg>
-              <div className="text-center mt-3 text-xs text-[#0ea5e9] font-bold tracking-widest uppercase">
+
+              <div className="text-center mt-3 text-xs text-[#6366f1] font-bold tracking-widest uppercase">
                 {lang === "en" ? "Guangzhou, China · Export Hub" : "中国广州 · 出口中心"}
               </div>
             </div>
