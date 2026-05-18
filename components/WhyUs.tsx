@@ -1,6 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 interface WhyProps { lang: "en" | "zh"; }
@@ -24,8 +23,8 @@ const reasons = [
     num: "03",
     en: "Certified Quality",
     zh: "认证质量",
-    desc_en: "Every batch is tested in-house and verified by SGS/Intertek. Full COA, MSDS, and customs documentation on every shipment.",
-    desc_zh: "每批货物均经内部检测和SGS/Intertek验证。每批货物均提供完整的分析证书、安全数据表和海关文件。",
+    desc_en: "Every batch tested in-house and verified by SGS/Intertek. Full COA, MSDS, and customs documentation on every shipment.",
+    desc_zh: "每批货物均经内部检测和SGS/Intertek验证。每批货物均提供完整分析证书、安全数据表和海关文件。",
   },
   {
     num: "04",
@@ -38,7 +37,7 @@ const reasons = [
     num: "05",
     en: "Flexible Packaging",
     zh: "灵活包装",
-    desc_en: "25 kg woven bags, 500 kg jumbo bags, or bulk container. Custom labeling available. We adapt to your logistics.",
+    desc_en: "25 kg woven bags, 500 kg jumbo bags, or bulk container. Custom labeling. We adapt to your logistics requirements.",
     desc_zh: "25公斤编织袋、500公斤集装袋或散装集装箱。可定制标签。我们根据您的物流需求调整。",
   },
   {
@@ -55,7 +54,7 @@ export default function WhyUs({ lang }: WhyProps) {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="why-us" className="py-28 bg-[#04070f]" ref={ref}>
+    <section id="why-us" className="py-28 bg-white" ref={ref}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-[1fr_2fr] gap-16 items-start">
 
@@ -66,20 +65,20 @@ export default function WhyUs({ lang }: WhyProps) {
             transition={{ duration: 0.7 }}
             className="lg:sticky lg:top-28"
           >
-            <div className="text-[11px] font-bold tracking-[3px] uppercase text-[#60efff] mb-4">
+            <div className="text-[11px] font-bold tracking-[3px] uppercase text-[#0ea5e9] mb-4">
               {lang === "en" ? "Why Choose WLY" : "为什么选择WLY"}
             </div>
-            <h2 className="text-4xl lg:text-5xl font-black tracking-tight leading-tight mb-6">
+            <h2 className="text-4xl lg:text-5xl font-black tracking-tight leading-tight text-slate-900 mb-6">
               {lang === "en" ? "The Competitive Edge You Need" : "您需要的竞争优势"}
             </h2>
-            <p className="text-[#7a8eaa] text-base leading-loose mb-8">
+            <p className="text-slate-500 text-base leading-loose mb-8">
               {lang === "en"
                 ? "15+ years of export excellence. One partner for sourcing, QC, logistics, and documentation."
                 : "15年以上出口卓越经验。采购、质控、物流和文件的一站式合作伙伴。"}
             </p>
             <a
               href="#contact"
-              className="inline-flex items-center gap-2 text-sm font-bold bg-[#60efff] text-[#04070f] px-6 py-3 rounded-full hover:opacity-90 transition-opacity shadow-[0_0_30px_rgba(96,239,255,0.25)]"
+              className="inline-flex items-center gap-2 text-sm font-bold bg-[#0ea5e9] text-white px-6 py-3 rounded-full hover:bg-sky-600 transition-colors shadow-[0_4px_20px_rgba(14,165,233,0.3)]"
             >
               {lang === "en" ? "Get a Quote" : "获取报价"} →
             </a>
@@ -93,13 +92,13 @@ export default function WhyUs({ lang }: WhyProps) {
                 initial={{ opacity: 0, y: 24 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="bg-[#080e1d] border border-[rgba(96,239,255,0.08)] rounded-2xl p-6 card-hover"
+                className="bg-white border border-slate-200 rounded-2xl p-6 card-hover shadow-sm"
               >
-                <div className="text-5xl font-black text-[#60efff]/10 mb-3 leading-none tracking-tighter">
+                <div className="text-5xl font-black text-slate-100 mb-3 leading-none tracking-tighter select-none">
                   {r.num}
                 </div>
-                <h4 className="font-bold text-base mb-2">{lang === "en" ? r.en : r.zh}</h4>
-                <p className="text-[#7a8eaa] text-sm leading-relaxed">
+                <h4 className="font-bold text-base text-slate-900 mb-2">{lang === "en" ? r.en : r.zh}</h4>
+                <p className="text-slate-500 text-sm leading-relaxed">
                   {lang === "en" ? r.desc_en : r.desc_zh}
                 </p>
               </motion.div>

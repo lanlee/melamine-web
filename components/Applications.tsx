@@ -1,13 +1,12 @@
 "use client";
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 interface AppProps { lang: "en" | "zh"; }
 
 const apps = [
   {
-    color: "#60efff",
+    color: "#0ea5e9", bg: "rgba(14,165,233,0.08)",
     icon: (
       <svg viewBox="0 0 32 32" fill="none" className="w-7 h-7">
         <rect x="3" y="7" width="26" height="20" rx="2" stroke="currentColor" strokeWidth="1.5"/>
@@ -24,7 +23,7 @@ const apps = [
     stat_zh: "约占全球三聚氰胺需求的40%",
   },
   {
-    color: "#a78bfa",
+    color: "#8b5cf6", bg: "rgba(139,92,246,0.08)",
     icon: (
       <svg viewBox="0 0 32 32" fill="none" className="w-7 h-7">
         <path d="M16 4 L28 10 L28 22 L16 28 L4 22 L4 10 Z" stroke="currentColor" strokeWidth="1.5" fill="currentColor" fillOpacity="0.1"/>
@@ -40,7 +39,7 @@ const apps = [
     stat_zh: "年产量超5亿件",
   },
   {
-    color: "#f59e0b",
+    color: "#f59e0b", bg: "rgba(245,158,11,0.08)",
     icon: (
       <svg viewBox="0 0 32 32" fill="none" className="w-7 h-7">
         <rect x="4" y="20" width="24" height="8" rx="1.5" stroke="currentColor" strokeWidth="1.5"/>
@@ -57,7 +56,7 @@ const apps = [
     stat_zh: "应用于60%以上重大基础设施项目",
   },
   {
-    color: "#f43f5e",
+    color: "#ef4444", bg: "rgba(239,68,68,0.08)",
     icon: (
       <svg viewBox="0 0 32 32" fill="none" className="w-7 h-7">
         <path d="M6 26 Q6 6 16 6 Q26 6 26 26" stroke="currentColor" strokeWidth="1.5" fill="none"/>
@@ -68,12 +67,12 @@ const apps = [
     en: "Flame Retardants",
     zh: "阻燃剂",
     desc_en: "Melamine and its salts (cyanurate, polyphosphate) serve as halogen-free flame retardants in cables, textiles, foam, and electronics — meeting REACH, RoHS, and UL standards.",
-    desc_zh: "三聚氰胺及其盐（氰尿酸盐、聚磷酸盐）作为电缆、纺织品、泡沫和电子产品中的无卤阻燃剂，符合REACH、RoHS和UL标准。",
+    desc_zh: "三聚氰胺及其盐作为电缆、纺织品、泡沫和电子产品中的无卤阻燃剂，符合REACH、RoHS和UL标准。",
     stat_en: "REACH & RoHS compliant grades available",
     stat_zh: "提供REACH & RoHS合规等级",
   },
   {
-    color: "#34d399",
+    color: "#10b981", bg: "rgba(16,185,129,0.08)",
     icon: (
       <svg viewBox="0 0 32 32" fill="none" className="w-7 h-7">
         <circle cx="16" cy="16" r="12" stroke="currentColor" strokeWidth="1.5"/>
@@ -89,7 +88,7 @@ const apps = [
     stat_zh: "高档纸巾制造商的关键原料",
   },
   {
-    color: "#38bdf8",
+    color: "#3b82f6", bg: "rgba(59,130,246,0.08)",
     icon: (
       <svg viewBox="0 0 32 32" fill="none" className="w-7 h-7">
         <rect x="4" y="4" width="24" height="24" rx="3" stroke="currentColor" strokeWidth="1.5"/>
@@ -113,7 +112,7 @@ export default function Applications({ lang }: AppProps) {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="applications" className="py-28 bg-[#06080f]" ref={ref}>
+    <section id="applications" className="py-28 bg-[#f8faff]" ref={ref}>
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -121,13 +120,13 @@ export default function Applications({ lang }: AppProps) {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <div className="text-[11px] font-bold tracking-[3px] uppercase text-[#60efff] mb-4">
+          <div className="text-[11px] font-bold tracking-[3px] uppercase text-[#0ea5e9] mb-4">
             {lang === "en" ? "Real Use Cases" : "真实应用场景"}
           </div>
-          <h2 className="text-4xl lg:text-5xl font-black tracking-tight mb-4">
+          <h2 className="text-4xl lg:text-5xl font-black tracking-tight text-slate-900 mb-4">
             {lang === "en" ? "Where Melamine Powers the World" : "三聚氰胺如何驱动世界"}
           </h2>
-          <p className="text-[#7a8eaa] text-lg max-w-xl mx-auto">
+          <p className="text-slate-500 text-lg max-w-xl mx-auto">
             {lang === "en"
               ? "From kitchen countertops to skyscraper foundations — melamine is the invisible backbone of modern manufacturing."
               : "从厨房台面到摩天大楼地基——三聚氰胺是现代制造业的隐形支柱。"}
@@ -141,26 +140,23 @@ export default function Applications({ lang }: AppProps) {
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="group bg-[#080e1d] border border-[rgba(96,239,255,0.08)] rounded-2xl p-7 flex flex-col gap-4 card-hover"
+              className="group bg-white border border-slate-200 rounded-2xl p-7 flex flex-col gap-4 card-hover shadow-sm"
             >
               <div
                 className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
-                style={{
-                  color: a.color,
-                  background: `${a.color}15`,
-                }}
+                style={{ color: a.color, background: a.bg }}
               >
                 {a.icon}
               </div>
-              <h4 className="text-base font-bold leading-snug">
+              <h4 className="text-base font-bold leading-snug text-slate-900">
                 {lang === "en" ? a.en : a.zh}
               </h4>
-              <p className="text-[#7a8eaa] text-sm leading-relaxed flex-1">
+              <p className="text-slate-500 text-sm leading-relaxed flex-1">
                 {lang === "en" ? a.desc_en : a.desc_zh}
               </p>
               <div
                 className="text-xs font-semibold px-3 py-1.5 rounded-full border self-start"
-                style={{ color: a.color, borderColor: `${a.color}30`, background: `${a.color}0a` }}
+                style={{ color: a.color, borderColor: `${a.color}30`, background: a.bg }}
               >
                 {lang === "en" ? a.stat_en : a.stat_zh}
               </div>

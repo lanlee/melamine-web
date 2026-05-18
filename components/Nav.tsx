@@ -27,19 +27,19 @@ export default function Nav({ lang, toggleLang }: NavProps) {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-[#04070f]/95 backdrop-blur-2xl border-b border-[rgba(96,239,255,0.1)] shadow-[0_4px_30px_rgba(0,0,0,0.5)]"
-          : "bg-transparent"
+          ? "bg-white/95 backdrop-blur-2xl border-b border-slate-200 shadow-sm"
+          : "bg-white/70 backdrop-blur-xl border-b border-slate-100"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center gap-8">
         {/* Logo */}
         <a href="#" className="flex items-center gap-3 flex-shrink-0">
-          <div className="w-10 h-10 bg-[#60efff] rounded-lg flex items-center justify-center text-[#04070f] font-black text-sm tracking-tight">
+          <div className="w-10 h-10 bg-[#0ea5e9] rounded-lg flex items-center justify-center text-white font-black text-sm tracking-tight shadow-[0_4px_14px_rgba(14,165,233,0.35)]">
             WLY
           </div>
           <div className="hidden sm:block">
-            <div className="text-sm font-bold text-white leading-tight">Guangzhou WLY Material Co., Ltd</div>
-            <div className="text-xs text-[#60efff]/70 font-medium">广州WLY材料有限公司</div>
+            <div className="text-sm font-bold text-slate-900 leading-tight">Guangzhou WLY Material Co., Ltd</div>
+            <div className="text-xs text-[#0ea5e9] font-medium">广州市文力源物资有限公司</div>
           </div>
         </a>
 
@@ -49,7 +49,7 @@ export default function Nav({ lang, toggleLang }: NavProps) {
             <li key={l.href}>
               <a
                 href={l.href}
-                className="text-sm text-[#7a8eaa] hover:text-white font-medium transition-colors duration-200"
+                className="text-sm text-slate-500 hover:text-slate-900 font-medium transition-colors duration-200"
               >
                 {lang === "en" ? l.en : l.zh}
               </a>
@@ -58,7 +58,7 @@ export default function Nav({ lang, toggleLang }: NavProps) {
           <li>
             <a
               href="#contact"
-              className="text-sm font-bold bg-[#60efff] text-[#04070f] px-5 py-2 rounded-full hover:opacity-85 transition-opacity duration-200"
+              className="text-sm font-bold bg-[#0ea5e9] text-white px-5 py-2 rounded-full hover:bg-sky-600 transition-colors duration-200 shadow-[0_4px_14px_rgba(14,165,233,0.3)]"
             >
               {lang === "en" ? "Contact Us" : "联系我们"}
             </a>
@@ -68,7 +68,7 @@ export default function Nav({ lang, toggleLang }: NavProps) {
         {/* Lang toggle */}
         <button
           onClick={toggleLang}
-          className="ml-auto lg:ml-4 border border-[rgba(96,239,255,0.2)] text-[#7a8eaa] hover:text-[#60efff] hover:border-[#60efff]/40 text-xs font-bold px-4 py-2 rounded-full transition-all duration-200 flex-shrink-0"
+          className="ml-auto lg:ml-4 border border-slate-200 text-slate-500 hover:text-[#0ea5e9] hover:border-[#0ea5e9]/40 text-xs font-bold px-4 py-2 rounded-full transition-all duration-200 flex-shrink-0 bg-white"
         >
           {lang === "en" ? "中文" : "English"}
         </button>
@@ -79,27 +79,21 @@ export default function Nav({ lang, toggleLang }: NavProps) {
           className="lg:hidden ml-2 flex flex-col gap-1.5 p-1"
           aria-label="Menu"
         >
-          <span
-            className={`block w-6 h-0.5 bg-white transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-2" : ""}`}
-          />
-          <span
-            className={`block w-6 h-0.5 bg-white transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`}
-          />
-          <span
-            className={`block w-6 h-0.5 bg-white transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`}
-          />
+          <span className={`block w-6 h-0.5 bg-slate-700 transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-2" : ""}`} />
+          <span className={`block w-6 h-0.5 bg-slate-700 transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`} />
+          <span className={`block w-6 h-0.5 bg-slate-700 transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
         </button>
       </div>
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="lg:hidden glass border-b border-[rgba(96,239,255,0.1)] px-6 py-6 flex flex-col gap-5">
+        <div className="lg:hidden bg-white border-b border-slate-200 shadow-lg px-6 py-6 flex flex-col gap-5">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
               onClick={() => setMenuOpen(false)}
-              className="text-base text-[#7a8eaa] hover:text-white font-medium transition-colors"
+              className="text-base text-slate-600 hover:text-slate-900 font-medium transition-colors"
             >
               {lang === "en" ? l.en : l.zh}
             </a>
@@ -107,7 +101,7 @@ export default function Nav({ lang, toggleLang }: NavProps) {
           <a
             href="#contact"
             onClick={() => setMenuOpen(false)}
-            className="text-base font-bold text-[#60efff] border border-[#60efff]/30 px-5 py-3 rounded-xl text-center"
+            className="text-base font-bold text-[#0ea5e9] border border-[#0ea5e9]/30 px-5 py-3 rounded-xl text-center hover:bg-sky-50 transition-colors"
           >
             {lang === "en" ? "Contact Us" : "联系我们"}
           </a>
