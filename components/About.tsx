@@ -131,8 +131,8 @@ export default function About({ lang }: AboutProps) {
             </h2>
             <p className="text-slate-500 text-base leading-loose mb-4">
               {lang === "en"
-                ? "Guangzhou WLY Material Co., Ltd (广州市文力源物资有限公司) is headquartered in Guangzhou, Guangdong — the heart of South China's chemical manufacturing belt. We are the region's largest melamine wholesaler, distributing over 3,000 metric tons each month to customers across Asia, Europe, the Americas, the Middle East, and Africa."
-                : "广州市文力源物资有限公司总部位于广东广州——华南化工制造带的核心地带。我们是该地区最大的三聚氰胺批发商，每月向亚洲、欧洲、美洲、中东和非洲的客户分销超过3,000公吨。"}
+                ? "Guangdong HC Material Co., Ltd (广东瀚成物资有限公司) is headquartered in Guangzhou, Guangdong — the heart of South China's chemical manufacturing belt. We are the region's largest melamine wholesaler, distributing over 3,000 metric tons each month to customers across Asia, Europe, the Americas, the Middle East, and Africa."
+                : "广东瀚成物资有限公司总部位于广东广州——华南化工制造带的核心地带。我们是该地区最大的三聚氰胺批发商，每月向亚洲、欧洲、美洲、中东和非洲的客户分销超过3,000公吨。"}
             </p>
             <p className="text-slate-500 text-base leading-loose mb-10">
               {lang === "en"

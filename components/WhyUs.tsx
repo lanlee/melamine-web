@@ -66,7 +66,7 @@ export default function WhyUs({ lang }: WhyProps) {
             className="lg:sticky lg:top-28"
           >
             <div className="text-[11px] font-bold tracking-[3px] uppercase text-[#0ea5e9] mb-4">
-              {lang === "en" ? "Why Choose WLY" : "为什么选择WLY"}
+              {lang === "en" ? "Why Choose HC" : "为什么选择瀚成"}
             </div>
             <h2 className="text-4xl lg:text-5xl font-black tracking-tight leading-tight text-slate-900 mb-6">
               {lang === "en" ? "The Competitive Edge You Need" : "您需要的竞争优势"}

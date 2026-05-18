@@ -35,11 +35,11 @@ export default function Nav({ lang, toggleLang }: NavProps) {
         {/* Logo */}
         <a href="#" className="flex items-center gap-3 flex-shrink-0">
           <div className="w-10 h-10 bg-[#0ea5e9] rounded-lg flex items-center justify-center text-white font-black text-sm tracking-tight shadow-[0_4px_14px_rgba(14,165,233,0.35)]">
-            WLY
+            HC
           </div>
           <div className="hidden sm:block">
-            <div className="text-sm font-bold text-slate-900 leading-tight">Guangzhou WLY Material Co., Ltd</div>
-            <div className="text-xs text-[#0ea5e9] font-medium">广州市文力源物资有限公司</div>
+            <div className="text-sm font-bold text-slate-900 leading-tight">Guangdong HC Material Co., Ltd</div>
+            <div className="text-xs text-[#0ea5e9] font-medium">广东瀚成物资有限公司</div>
           </div>
         </a>
 

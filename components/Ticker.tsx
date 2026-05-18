@@ -1,7 +1,7 @@
 export default function Ticker() {
   const items = [
-    "Guangzhou WLY Material Co., Ltd",
-    "广州市文力源物资有限公司",
+    "Guangdong HC Material Co., Ltd",
+    "广东瀚成物资有限公司",
     "3,000 MT / Month · 每月3000公吨",
     "South China's Largest Melamine Wholesaler · 华南最大三聚氰胺批发商",
     "Global Shipping · 全球配送",
