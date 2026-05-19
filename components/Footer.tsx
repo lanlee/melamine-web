@@ -6,11 +6,9 @@ export default function Footer({ lang }: FooterProps) {
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mb-8">
           <div className="flex items-center gap-4">
-            <div className="w-11 h-11 bg-gradient-to-br from-[#6366f1] to-[#4f46e5] rounded-full flex items-center justify-center text-white font-black text-xl">
-              HC
-            </div>
+            <img src="/hanchenglogo.png" alt="HC Logo" className="w-11 h-11 rounded-lg object-contain" />
             <div>
-              <div className="font-bold text-base text-white">Guangdong HC Material Co., Ltd</div>
+              <div className="font-bold text-base text-white">Guangdong HanCheng Material</div>
               <div className="text-sm text-[#6366f1]">广东翰成物资有限公司</div>
             </div>
           </div>
@@ -22,7 +20,7 @@ export default function Footer({ lang }: FooterProps) {
         </div>
         <div className="h-px bg-slate-800 mb-8" />
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500 text-xs">
-          <span>© 2026 Guangdong HC Material Co., Ltd. All rights reserved.</span>
+          <span>© 2026 Guangdong HanCheng Material. All rights reserved.</span>
           <div className="flex items-center gap-6">
             <span>{lang === "en" ? "Guangzhou · Guangdong · China" : "广州·广东·中国"}</span>
             <div className="flex items-center gap-1.5">

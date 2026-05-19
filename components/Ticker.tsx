@@ -1,6 +1,6 @@
 export default function Ticker() {
   const items = [
-    "Guangdong HC Material Co., Ltd",
+    "Guangdong HanCheng Material",
     "广东翰成物资有限公司",
     "3,000+ Tons / Month · 每月3000吨",
     "South China's Largest Melamine Wholesaler · 华南最大三聚氰胺批发商",

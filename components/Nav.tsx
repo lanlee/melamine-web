@@ -34,11 +34,9 @@ export default function Nav({ lang, toggleLang }: NavProps) {
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center gap-8">
         {/* Logo */}
         <a href="#" className="flex items-center gap-3 flex-shrink-0">
-          <div className="w-11 h-11 bg-gradient-to-br from-[#6366f1] to-[#4f46e5] rounded-full flex items-center justify-center text-white font-black text-xl">
-            HC
-          </div>
+          <img src="/hanchenglogo.png" alt="HC Logo" className="w-11 h-11 rounded-lg object-contain" />
           <div className="hidden sm:block">
-            <div className="text-sm font-bold text-slate-900 leading-tight">Guangdong HC Material Co., Ltd</div>
+            <div className="text-sm font-bold text-slate-900 leading-tight">Guangdong HanCheng Material</div>
             <div className="text-xs text-[#6366f1] font-medium">广东翰成物资有限公司</div>
           </div>
         </a>
