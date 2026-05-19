@@ -48,7 +48,7 @@ export default function Contact({ lang }: ContactProps) {
                 {
                   icon: "📧",
                   label_en: "Email", label_zh: "邮箱",
-                  val: "info@hcmaterial.com",
+                  val: "lan@hanchengmaterial.com",
                 },
                 {
                   icon: "📱",
