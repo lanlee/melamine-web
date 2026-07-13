@@ -6,6 +6,7 @@ const links = [
   { href: "#products", en: "Products", zh: "产品" },
   { href: "#applications", en: "Applications", zh: "应用" },
   { href: "#why-us", en: "Why Us", zh: "优势" },
+  { href: "/blog", en: "Blog", zh: "博客" },
 ];
 
 interface NavProps {
