@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://melamine-web.vercel.app/sitemap.xml
