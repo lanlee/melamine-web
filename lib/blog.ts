@@ -18,7 +18,7 @@ export const posts: BlogPost[] = [
     date: "2026-07-13",
     author: "Guangdong HanCheng Material",
     tags: ["melamine powder", "industrial chemicals", "sourcing guide", "melamine grades"],
-    content: \`
+    content: `
 ## What is Melamine Powder?
 
 Melamine powder (CAS 108-78-01) is a white crystalline organic compound with the chemical formula C₃H₆N₆. It is a key raw material used across dozens of industries — from laminate flooring and dinnerware to concrete admixtures and flame retardants.
@@ -91,7 +91,7 @@ With over 25 years in the melamine trade, Guangdong HanCheng Material offers:
 - **Full compliance documentation** — COA, MSDS, and SGS reports with every shipment
 
 [Contact us](/contact) for a quotation or to request samples.
-\`,
+`,
   },
   {
     slug: "melamine-vs-urea-formaldehyde-resin",
@@ -101,7 +101,7 @@ With over 25 years in the melamine trade, Guangdong HanCheng Material offers:
     date: "2026-07-13",
     author: "Guangdong HanCheng Material",
     tags: ["melamine resin", "urea formaldehyde", "industrial resins", "comparison guide"],
-    content: \`
+    content: `
 ## Introduction
 
 Melamine-formaldehyde (MF) and urea-formaldehyde (UF) resins are two of the most widely used thermosetting polymers in the wood panel, laminate, and adhesives industries. While they share some similarities, their performance characteristics differ significantly.
@@ -171,7 +171,7 @@ The quality of your resin depends heavily on the melamine raw material. For resi
 - **Consistent particle size** for predictable dissolution rates
 
 Guangdong HanCheng Material supplies **premium melamine powder (≥99.8%)** with full COA and batch traceability. [Request a quote](/contact) for bulk pricing.
-\`,
+`,
   },
   {
     slug: "how-to-choose-reliable-melamine-supplier-china",
@@ -181,7 +181,7 @@ Guangdong HanCheng Material supplies **premium melamine powder (≥99.8%)** with
     date: "2026-07-13",
     author: "Guangdong HanCheng Material",
     tags: ["melamine supplier", "China sourcing", "buyers guide", "quality control", "international trade"],
-    content: \`
+    content: `
 ## Why China Dominates Melamine Production
 
 China produces over 65% of the world's melamine, with major manufacturing clusters in Shandong, Henan, Sichuan, and Guangdong provinces. For international buyers, China offers the most competitive pricing and the widest range of grades and volumes.
@@ -279,6 +279,6 @@ Guangdong HanCheng Material has been a trusted melamine supplier since 2000:
 - **Strategic location** in Guangzhou, adjacent to Shenzhen and Guangzhou ports
 
 [Get in touch](/contact) for a current quotation or to discuss your melamine requirements.
-\`,
+`,
   },
 ];
