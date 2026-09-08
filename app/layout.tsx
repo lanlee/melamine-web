@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
+import StructuredData from "@/components/StructuredData";
+import { SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL } from "@/lib/site";
+
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -9,9 +12,30 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Guangdong HanCheng Material | Global Melamine Supplier",
-  description:
-    "South China's largest melamine wholesaler. 3,000+ metric tons/month. Industrial-grade melamine powder shipped to 40+ countries worldwide.",
+  metadataBase: new URL(SITE_URL),
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    url: "/",
+    siteName: SITE_NAME,
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    locale: "en_US",
+    images: [{ url: "/hanchenglogo.png", width: 512, height: 512 }],
+  },
+  twitter: {
+    card: "summary",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
   icons: {
     icon: "/hanchenglogo.ico",
   },
@@ -22,7 +46,10 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${inter.variable} h-full antialiased`}>
-      <body className="min-h-full">{children}</body>
+      <body className="min-h-full">
+        {children}
+        <StructuredData />
+      </body>
     </html>
   );
 }
