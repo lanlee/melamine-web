@@ -3,6 +3,7 @@ title: "Melamine: 6 Uses, 3 Purity Grades, and 5 Buying Checks"
 slug: "melamine-uses-grades-safety"
 date: "2026-09-08"
 author: "Guangdong HanCheng Material"
+category: article
 tags: ["article", "blog", "seo", "melamine", "melamine powder", "melamine grades", "melamine sourcing"]
 meta_title: "Melamine: 6 Uses, 3 Purity Grades, Safety Limits | HanCheng"
 meta_description: "Melamine explained for buyers: 6 industrial uses, 3 purity grades, FDA and EFSA safety limits, and the 5 checks to run before you order melamine powder."
