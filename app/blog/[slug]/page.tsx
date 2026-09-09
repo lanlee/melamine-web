@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
-import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+import { notFound, permanentRedirect } from "next/navigation";
 import BlogNav from "@/components/BlogNav";
 import Footer from "@/components/Footer";
 
@@ -13,6 +14,8 @@ interface PostData {
   excerpt?: string;
   content: string;
 }
+
+const SITE_URL = "https://www.hanchengmaterial.com";
 
 function getPost(slug: string): PostData | null {
   const filePath = path.join(process.cwd(), "content/blog", `${slug}.md`);
@@ -34,6 +37,27 @@ function getPost(slug: string): PostData | null {
     image: getField("image"),
     excerpt: getField("excerpt"),
     content,
+  };
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const canonicalSlug = slug === "melamine-uses-grades-checks-before-you"
+    ? "melamine-uses-grades-safety"
+    : slug;
+  const post = getPost(canonicalSlug);
+  if (!post) return {};
+  const canonical = `${SITE_URL}/blog/${canonicalSlug}`;
+  return {
+    title: post.title,
+    description: post.excerpt,
+    alternates: { canonical },
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      url: canonical,
+      images: post.image ? [{ url: new URL(post.image, SITE_URL).toString(), alt: post.title }] : undefined,
+    },
   };
 }
 
@@ -117,6 +141,9 @@ function renderMarkdown(md: string): string {
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
+  if (slug === "melamine-uses-grades-checks-before-you") {
+    permanentRedirect("/blog/melamine-uses-grades-safety");
+  }
   const post = getPost(slug);
   if (!post) notFound();
 
@@ -178,6 +205,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               {post.author && <span>By {post.author}</span>}
               <span>{post.date}</span>
             </div>
+            <a
+              href={`${SITE_URL}/blog/${post.slug}`}
+              className="mt-3 inline-block text-sm font-semibold text-[#6366f1] underline underline-offset-4"
+            >
+              {SITE_URL}/blog/{post.slug}
+            </a>
           </header>
           {heroImage && (
             <img
