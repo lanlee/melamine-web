@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { notFound } from "next/navigation";
-import Nav from "@/components/Nav";
+import BlogNav from "@/components/BlogNav";
 import Footer from "@/components/Footer";
 
 interface PostData {
@@ -23,7 +23,7 @@ function getPost(slug: string): PostData | null {
   const frontMatter = parts[1];
   const content = parts.slice(2).join("---").trim();
   const getField = (key: string) => {
-    const match = frontMatter.match(new RegExp(`^${key}:\s*(.+)$`, "m"));
+    const match = frontMatter.match(new RegExp(`^${key}:\\s*(.+)$`, "m"));
     return match ? match[1].trim().replace(/^["']|["']$/g, "") : undefined;
   };
   return {
@@ -49,25 +49,29 @@ function extractTldr(content: string): string | null {
 
 function extractFaq(content: string): { question: string; answer: string }[] {
   const faq: { question: string; answer: string }[] = [];
-  const regex = /^##\s*FAQ\s*$/gm;
-  const match = regex.exec(content);
-  if (!match) return faq;
-  const afterFaq = content.slice(match.index + match[0].length);
-  const qRegex = /^###\s+(.+)$/gm;
-  const aRegex = /^([^#\n][\s\S]*?)(?=^###\s|$)/gm;
-  let qMatch;
-  while ((qMatch = qRegex.exec(afterFaq)) !== null) {
-    const question = qMatch[1].trim();
-    const answerStart = qMatch.index + qMatch[0].length;
-    const nextQ = qRegex.exec(afterFaq);
-    qRegex.lastIndex = qMatch.index + qMatch[0].length;
-    const answerEnd = nextQ ? nextQ.index : afterFaq.length;
-    const answer = afterFaq.slice(answerStart, answerEnd).trim();
+  const section = getFaqSection(content);
+  if (!section) return faq;
+  const questionMatches = [...section.markdown.matchAll(/^###\s+(.+)$/gm)];
+  questionMatches.forEach((questionMatch, index) => {
+    const question = questionMatch[1].trim();
+    const answerStart = (questionMatch.index || 0) + questionMatch[0].length;
+    const answerEnd = questionMatches[index + 1]?.index ?? section.markdown.length;
+    const answer = section.markdown.slice(answerStart, answerEnd).trim();
     if (answer) {
       faq.push({ question, answer });
     }
-  }
+  });
   return faq;
+}
+
+function getFaqSection(content: string): { markdown: string; start: number; end: number } | null {
+  const heading = /^##\s*(?:FAQ|Frequently Asked Questions)\s*$/im.exec(content);
+  if (!heading || heading.index === undefined) return null;
+  const afterHeading = heading.index + heading[0].length;
+  const remainder = content.slice(afterHeading);
+  const nextSection = /^##\s+/m.exec(remainder);
+  const end = nextSection?.index === undefined ? content.length : afterHeading + nextSection.index;
+  return { markdown: content.slice(afterHeading, end), start: heading.index, end };
 }
 
 function renderMarkdown(md: string): string {
@@ -120,7 +124,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const tldr = extractTldr(post.content);
   const faq = extractFaq(post.content);
   const contentWithoutTldr = post.content.replace(/^>\s*\*\*TL;DR\*\*:?\s*.+$/m, "");
-  const contentWithoutFaq = contentWithoutTldr.replace(/^##\s*FAQ\s*$/gm, "");
+  const faqSection = getFaqSection(contentWithoutTldr);
+  const contentWithoutFaq = faqSection
+    ? contentWithoutTldr.slice(0, faqSection.start) + contentWithoutTldr.slice(faqSection.end)
+    : contentWithoutTldr;
   const htmlContent = renderMarkdown(contentWithoutFaq);
 
   const jsonLd = {
@@ -157,7 +164,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <Nav lang="en" toggleLang={() => {}} />
+      <BlogNav />
       <main className="pt-32 pb-20 bg-white min-h-screen">
         <article className="max-w-4xl mx-auto px-6">
           <header className="mb-10">

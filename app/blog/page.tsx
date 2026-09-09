@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import Link from "next/link";
-import Nav from "@/components/Nav";
+import BlogNav from "@/components/BlogNav";
 import Footer from "@/components/Footer";
 
 export const metadata = {
@@ -26,7 +26,7 @@ function getPosts(): PostMeta[] {
     const raw = fs.readFileSync(path.join(dir, file), "utf8");
     const frontMatter = raw.split("---")[1] || "";
     const getField = (key: string) => {
-      const match = frontMatter.match(new RegExp(`^${key}:\s*(.+)$`, "m"));
+      const match = frontMatter.match(new RegExp(`^${key}:\\s*(.+)$`, "m"));
       return match ? match[1].trim().replace(/^["']|["']$/g, "") : undefined;
     };
     return {
@@ -43,7 +43,7 @@ export default function BlogPage() {
   const posts = getPosts();
   return (
     <>
-      <Nav lang="en" toggleLang={() => {}} />
+      <BlogNav />
       <main className="pt-32 pb-20 bg-white min-h-screen">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">

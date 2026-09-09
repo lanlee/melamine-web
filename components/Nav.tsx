@@ -11,9 +11,10 @@ const links = [
 interface NavProps {
   lang: "en" | "zh";
   toggleLang: () => void;
+  linkPrefix?: string;
 }
 
-export default function Nav({ lang, toggleLang }: NavProps) {
+export default function Nav({ lang, toggleLang, linkPrefix = "" }: NavProps) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -33,7 +34,7 @@ export default function Nav({ lang, toggleLang }: NavProps) {
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center gap-8">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-3 flex-shrink-0">
+        <a href={linkPrefix || "#"} className="flex items-center gap-3 flex-shrink-0">
           <img src="/hanchenglogo.png" alt="HC Logo" className="w-11 h-11 rounded-lg object-contain" />
           <div className="hidden sm:block">
             <div className="text-sm font-bold text-slate-900 leading-tight">Guangdong HanCheng Material</div>
@@ -46,7 +47,7 @@ export default function Nav({ lang, toggleLang }: NavProps) {
           {links.map((l) => (
             <li key={l.href}>
               <a
-                href={l.href}
+                href={`${linkPrefix}${l.href}`}
                 className="text-sm text-slate-500 hover:text-slate-900 font-medium transition-colors duration-200"
               >
                 {lang === "en" ? l.en : l.zh}
@@ -55,7 +56,7 @@ export default function Nav({ lang, toggleLang }: NavProps) {
           ))}
           <li>
             <a
-              href="#contact"
+              href={`${linkPrefix}#contact`}
               className="text-sm font-bold bg-[#6366f1] text-white px-5 py-2 rounded-full hover:bg-[#4f46e5] transition-colors duration-200"
             >
               {lang === "en" ? "Contact Us" : "联系我们"}
@@ -89,7 +90,7 @@ export default function Nav({ lang, toggleLang }: NavProps) {
           {links.map((l) => (
             <a
               key={l.href}
-              href={l.href}
+              href={`${linkPrefix}${l.href}`}
               onClick={() => setMenuOpen(false)}
               className="text-base text-slate-600 hover:text-slate-900 font-medium transition-colors"
             >
@@ -97,7 +98,7 @@ export default function Nav({ lang, toggleLang }: NavProps) {
             </a>
           ))}
           <a
-            href="#contact"
+            href={`${linkPrefix}#contact`}
             onClick={() => setMenuOpen(false)}
             className="text-base font-bold text-[#6366f1] border border-[#6366f1]/30 px-5 py-3 rounded-xl text-center hover:bg-indigo-50 transition-colors"
           >
