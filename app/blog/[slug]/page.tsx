@@ -104,7 +104,19 @@ function renderMarkdown(md: string): string {
   // Escape HTML first
   html = html.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   // Images (before links)
-  html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" class="my-6 rounded-xl w-full" />');
+  html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" class="my-8 rounded-2xl w-full shadow-sm" />');
+  // Relevant YouTube references become responsive thumbnail players. Restrict
+  // the iframe source to a valid 11-character YouTube video id.
+  html = html.replace(
+    /\[([^\]]+)\]\(https?:\/\/(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([A-Za-z0-9_-]{11})[^)]*\)(?:\s+([^\n]+))?/g,
+    (_match, label, videoId, description = "") => {
+      const safeLabel = String(label).replace(/'/g, "&#39;").replace(/"/g, "&quot;");
+      return `<figure class='my-8 overflow-hidden rounded-2xl border border-indigo-100 bg-white shadow-[0_12px_40px_rgba(99,102,241,0.12)]'>` +
+        `<div class='aspect-video w-full bg-slate-950'><iframe class='h-full w-full' src='https://www.youtube-nocookie.com/embed/${videoId}' title='${safeLabel}' loading='lazy' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' allowfullscreen></iframe></div>` +
+        `<figcaption class='px-5 py-4 text-sm leading-relaxed text-slate-500'><strong class='text-slate-800'>${safeLabel}</strong>${description ? ` ${description}` : ""}</figcaption>` +
+        `</figure>`;
+    },
+  );
   // Links
   html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-[#6366f1] underline">$1</a>');
   // Bold
@@ -192,22 +204,28 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <BlogNav />
-      <main className="pt-32 pb-20 bg-white min-h-screen">
-        <article className="max-w-4xl mx-auto px-6">
-          <header className="mb-10">
-            <div className="text-sm text-slate-400 mb-4">
+      <main className="relative min-h-screen overflow-hidden bg-[#f8faff] pb-24 pt-32">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_35%_at_50%_0%,rgba(99,102,241,0.10)_0%,transparent_72%)]" />
+        <article className="relative mx-auto max-w-5xl px-5 sm:px-8">
+          <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_20px_70px_rgba(30,41,59,0.08),0_4px_16px_rgba(99,102,241,0.06)]">
+          <header className="px-6 pb-8 pt-10 sm:px-12 sm:pt-14">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-indigo-200 bg-indigo-50 px-4 py-2 text-[11px] font-bold uppercase tracking-[3px] text-[#6366f1]">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#6366f1]" />
+              Industrial insight
+            </div>
+            <div className="mb-4 text-sm text-slate-400">
               <a href="/" className="hover:text-[#6366f1]">Home</a> / <a href="/blog" className="hover:text-[#6366f1]">Blog</a> / {post.title}
             </div>
-            <h1 className="text-4xl sm:text-5xl font-black tracking-tight text-slate-900 mb-4">
+            <h1 className="mb-5 max-w-4xl text-4xl font-black leading-[1.08] tracking-[-1.5px] text-slate-900 sm:text-6xl">
               {post.title}
             </h1>
-            <div className="flex items-center gap-4 text-sm text-slate-500">
+            <div className="flex flex-wrap items-center gap-3 text-sm font-medium text-slate-500">
               {post.author && <span>By {post.author}</span>}
               <span>{post.date}</span>
             </div>
             <a
               href={`${SITE_URL}/blog/${post.slug}`}
-              className="mt-3 inline-block text-sm font-semibold text-[#6366f1] underline underline-offset-4"
+              className="mt-4 inline-block break-all text-sm font-semibold text-[#6366f1] underline decoration-indigo-200 underline-offset-4"
             >
               {SITE_URL}/blog/{post.slug}
             </a>
@@ -216,21 +234,21 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             <img
               src={heroImage}
               alt={post.title}
-              className="w-full rounded-2xl mb-10"
+              className="aspect-[16/9] w-full object-cover"
             />
           )}
           {tldr && (
-            <div className="bg-indigo-50 border-l-4 border-[#6366f1] rounded-r-xl p-6 mb-8">
+            <div className="mx-6 mt-10 rounded-2xl border border-indigo-100 bg-indigo-50 p-6 sm:mx-12 sm:p-8">
               <p className="font-bold text-[#6366f1] mb-1">TL;DR</p>
               <p className="text-slate-700">{tldr}</p>
             </div>
           )}
           <div
-            className="prose prose-slate max-w-none"
+            className="px-6 py-10 text-base leading-8 text-slate-700 sm:px-12 sm:py-14 sm:text-lg"
             dangerouslySetInnerHTML={{ __html: htmlContent }}
           />
           {faq.length > 0 && (
-            <section className="mt-12">
+            <section className="mx-6 mb-12 rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:mx-12 sm:p-8">
               <h2 className="text-3xl font-bold text-slate-900 mb-6">FAQ</h2>
               {faq.map((item, i) => (
                 <div key={i} className="mb-6">
@@ -240,6 +258,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               ))}
             </section>
           )}
+          </div>
         </article>
       </main>
       <Footer lang="en" />

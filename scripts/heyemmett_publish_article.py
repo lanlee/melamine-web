@@ -5,6 +5,9 @@ Created by HeyEmmett. The destination is intentionally recorded here so future
 publishes do not need AI or repository rediscovery. ARTICLE_FORMAT_INSTRUCTIONS
 records the user-approved format that the article writer must follow before this
 deterministic script copies the finished article into the blog.
+BLOG_STYLE_CONTRACT records the site-native renderer and visual rules captured
+during the first publish. Later publishes reuse that renderer without calling an
+AI API again for layout or styling.
 """
 from __future__ import annotations
 
@@ -15,6 +18,29 @@ from pathlib import Path
 BLOG_DIR = Path('content/blog')
 ARTICLE_EXTENSION = '.md'
 ARTICLE_FORMAT_INSTRUCTIONS = ''
+BLOG_STYLE_CONTRACT = {
+    'version': 1,
+    'framework': 'next',
+    'homepage': 'app/page.tsx',
+    'style_reference_files': [
+        'app/page.tsx',
+        'app/layout.tsx',
+        'app/globals.css',
+        'components/Nav.tsx',
+        'components/Footer.tsx',
+        'components/Hero.tsx',
+    ],
+    'blog_route_files': ['app/blog/page.tsx', 'app/blog/[slug]/page.tsx'],
+    'rules': [
+        'Reuse BlogNav, Footer, Inter, the indigo/slate palette, rounded cards, shadows, and responsive spacing.',
+        'Render Markdown headings, paragraphs, links, tables, lists, FAQ, and media with explicit site-native classes.',
+        'Render the article image as a full-width 16:9 hero.',
+        'Render YouTube links in Relevant video as responsive embedded players with thumbnails, not plain links.',
+        'Publish future articles to content/blog and reuse the existing /blog renderer.',
+    ],
+    'style_generation': 'first_publish_only',
+    'future_publish': 'run this script; do not call an AI API for layout or styling',
+}
 
 
 def slugify(value: str) -> str:
