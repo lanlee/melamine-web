@@ -125,22 +125,30 @@ function renderMarkdown(md: string): string {
   html = html.replace(/\*([^*]+)\*/g, "<em>$1</em>");
   // Inline code
   html = html.replace(/`([^`]+)`/g, "<code class='bg-slate-100 px-1.5 py-0.5 rounded text-sm'>$1</code>");
+  // Parse a complete Markdown table as one block. Treating each pipe row
+  // independently can split the header and body into separate tables when the
+  // separator row is removed.
+  html = html.replace(/^(?:\|[^\n]*\|\s*(?:\n|$)){2,}/gm, (block) => {
+    const lines = block.trim().split("\n").map((line) => line.trim()).filter(Boolean);
+    const row = (line: string) => line.replace(/^\||\|$/g, "").split("|").map((cell) => cell.trim());
+    if (lines.length < 3) return block;
+    const headers = row(lines[0]);
+    const separators = row(lines[1]);
+    if (headers.length !== separators.length || !separators.every((cell) => /^:?-{3,}:?$/.test(cell))) {
+      return block;
+    }
+    const bodyRows = lines.slice(2).map(row).filter((cells) => cells.length === headers.length);
+    if (!bodyRows.length) return block;
+    const head = headers.map((cell) => `<th scope='col' class='border border-slate-200 bg-slate-100 px-4 py-3 text-left font-bold text-slate-900'>${cell}</th>`).join("");
+    const body = bodyRows.map((cells) => `<tr>${cells.map((cell) => `<td class='border border-slate-200 px-4 py-3 align-top'>${cell}</td>`).join("")}</tr>`).join("");
+    return `<div class='my-6 overflow-x-auto rounded-xl border border-slate-200'><table class='w-full min-w-[640px] border-collapse'><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table></div>`;
+  });
   // Headings
   html = html.replace(/^###\s+(.+)$/gm, "<h3 class='text-2xl font-bold mt-8 mb-4 text-slate-900'>$1</h3>");
   html = html.replace(/^##\s+(.+)$/gm, "<h2 class='text-3xl font-bold mt-10 mb-4 text-slate-900'>$1</h2>");
   html = html.replace(/^#\s+(.+)$/gm, "<h1 class='text-4xl font-black mt-10 mb-4 text-slate-900'>$1</h1>");
   // Blockquote (TL;DR)
   html = html.replace(/^>\s*(.+)$/gm, "<blockquote class='border-l-4 border-[#6366f1] bg-indigo-50 px-6 py-4 my-6 rounded-r-xl text-slate-700 italic'>$1</blockquote>");
-  // Tables
-  html = html.replace(/\|(.+)\|/g, (match) => {
-    const cells = match.split("|").filter((c) => c.trim() !== "");
-    if (cells.length === 0) return match;
-    const isHeader = cells.some((c) => c.includes("---"));
-    if (isHeader) return "";
-    return "<tr>" + cells.map((c) => `<td class='border border-slate-200 px-4 py-2'>${c.trim()}</td>`).join("") + "</tr>";
-  });
-  // Wrap table rows in table if not already
-  html = html.replace(/(<tr>.*<\/tr>\n?)+/g, "<div class='overflow-x-auto my-6'><table class='w-full border-collapse'>$&</table></div>");
   // Lists
   html = html.replace(/^[-*]\s+(.+)$/gm, "<li class='ml-4'>$1</li>");
   html = html.replace(/(<li[^>]*>.*<\/li>\n?)+/g, "<ul class='list-disc pl-6 my-4 space-y-2'>$&</ul>");
@@ -223,12 +231,6 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               {post.author && <span>By {post.author}</span>}
               <span>{post.date}</span>
             </div>
-            <a
-              href={`${SITE_URL}/blog/${post.slug}`}
-              className="mt-4 inline-block break-all text-sm font-semibold text-[#6366f1] underline decoration-indigo-200 underline-offset-4"
-            >
-              {SITE_URL}/blog/{post.slug}
-            </a>
           </header>
           {heroImage && (
             <img
