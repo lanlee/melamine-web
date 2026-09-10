@@ -1,12 +1,24 @@
 import fs from "fs";
 import path from "path";
 import Link from "next/link";
+import type { Metadata } from "next";
 import BlogNav from "@/components/BlogNav";
 import Footer from "@/components/Footer";
+import { ORG_ID, SITE_NAME, SITE_URL, WEBSITE_ID, absoluteUrl } from "@/lib/site";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Blog | Guangdong HanCheng Material",
   description: "Insights on melamine industry, applications, and supply chain.",
+  alternates: {
+    canonical: "/blog",
+  },
+  openGraph: {
+    title: "Blog | Guangdong HanCheng Material",
+    description: "Insights on melamine industry, applications, and supply chain.",
+    url: `${SITE_URL}/blog`,
+    siteName: SITE_NAME,
+    type: "website",
+  },
 };
 
 interface PostMeta {
@@ -41,8 +53,43 @@ function getPosts(): PostMeta[] {
 
 export default function BlogPage() {
   const posts = getPosts();
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Blog",
+        "@id": `${SITE_URL}/blog#blog`,
+        name: `Blog | ${SITE_NAME}`,
+        url: `${SITE_URL}/blog`,
+        publisher: { "@id": ORG_ID },
+        isPartOf: { "@id": WEBSITE_ID },
+        inLanguage: "en",
+        blogPost: posts.map((post) => ({
+          "@type": "BlogPosting",
+          "@id": `${SITE_URL}/blog/${post.slug}#article`,
+          headline: post.title,
+          datePublished: post.date || undefined,
+          url: `${SITE_URL}/blog/${post.slug}`,
+          ...(post.image ? { image: absoluteUrl(post.image) } : {}),
+        })),
+      },
+      {
+        "@type": "ItemList",
+        "@id": `${SITE_URL}/blog#items`,
+        itemListElement: posts.map((post, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          url: `${SITE_URL}/blog/${post.slug}`,
+          name: post.title,
+        })),
+      },
+    ],
+  };
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <BlogNav />
       <main className="pt-32 pb-20 bg-white min-h-screen">
         <div className="max-w-7xl mx-auto px-6">
