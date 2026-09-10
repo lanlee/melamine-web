@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { notFound, permanentRedirect } from "next/navigation";
 import BlogNav from "@/components/BlogNav";
 import Footer from "@/components/Footer";
+import { ORG_ID, SITE_NAME, SITE_URL, WEBSITE_ID, absoluteUrl } from "@/lib/site";
 
 interface PostData {
   slug: string;
@@ -40,6 +41,23 @@ function getPost(slug: string): PostData | null {
   };
 }
 
+/**
+ * Posts published through the content pipeline do not always carry an excerpt,
+ * but every page still needs a meta description. Fall back to the first real
+ * paragraph, stripped of markdown.
+ */
+const MARKDOWN_NOISE = /!\[[^\]]*\]\([^)]*\)|\[([^\]]*)\]\([^)]*\)|[#>*`_]|https?:\/\/\S+/g;
+
+function getPostDescription(post: PostData): string | undefined {
+  if (post.excerpt) return post.excerpt;
+  const paragraph = post.content
+    .split(/\n\s*\n/)
+    .map((part) => part.replace(MARKDOWN_NOISE, "$1").replace(/\s+/g, " ").trim())
+    .find((part) => part.length >= 40 && !part.startsWith("|"));
+  if (!paragraph) return undefined;
+  return paragraph.length <= 155 ? paragraph : `${paragraph.slice(0, 152).trimEnd()}...`;
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const canonicalSlug = slug === "melamine-uses-grades-checks-before-you"
@@ -50,7 +68,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const canonical = `${SITE_URL}/blog/${canonicalSlug}`;
   return {
     title: post.title,
-    description: post.excerpt,
+    description: getPostDescription(post),
     alternates: { canonical },
     openGraph: {
       title: post.title,
@@ -169,27 +187,46 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     : contentWithoutTldr;
   const htmlContent = renderMarkdown(contentWithoutFaq);
 
+  const canonical = `${SITE_URL}/blog/${post.slug}`;
+  const description = getPostDescription(post);
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "Article",
+        "@type": "BlogPosting",
+        "@id": `${canonical}#article`,
+        // schema.org URLs must be absolute: relative values are dropped by
+        // the rich-results parser.
+        mainEntityOfPage: { "@id": canonical },
         headline: post.title,
-        datePublished: post.date,
-        author: post.author ? { "@type": "Person", name: post.author } : undefined,
-        image: heroImage || undefined,
+        description,
+        datePublished: post.date || undefined,
+        dateModified: post.date || undefined,
+        image: heroImage ? absoluteUrl(heroImage) : undefined,
+        author: { "@type": "Organization", name: post.author || SITE_NAME },
+        publisher: {
+          "@type": "Organization",
+          "@id": ORG_ID,
+          name: SITE_NAME,
+          logo: { "@type": "ImageObject", url: absoluteUrl("/hanchenglogo.png") },
+        },
+        isPartOf: { "@id": WEBSITE_ID },
+        inLanguage: "en",
       },
       {
         "@type": "BreadcrumbList",
+        "@id": `${canonical}#breadcrumb`,
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: "/" },
-          { "@type": "ListItem", position: 2, name: "Blog", item: "/blog" },
-          { "@type": "ListItem", position: 3, name: post.title, item: `/blog/${post.slug}` },
+          { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
+          { "@type": "ListItem", position: 2, name: "Blog", item: `${SITE_URL}/blog` },
+          { "@type": "ListItem", position: 3, name: post.title, item: canonical },
         ],
       },
       ...(faq.length > 0
         ? [{
             "@type": "FAQPage",
+            "@id": `${canonical}#faq`,
             mainEntity: faq.map((f) => ({
               "@type": "Question",
               name: f.question,
