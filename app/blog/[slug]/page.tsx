@@ -186,7 +186,13 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const contentWithoutFaq = faqSection
     ? contentWithoutTldr.slice(0, faqSection.start) + contentWithoutTldr.slice(faqSection.end)
     : contentWithoutTldr;
-  const htmlContent = renderMarkdown(contentWithoutFaq);
+  // Insert media at a section boundary near the middle, never inside a table/list.
+  const sections = [...contentWithoutFaq.matchAll(/^##\s+/gm)];
+  const paragraphs = [...contentWithoutFaq.matchAll(/\n\s*\n/g)];
+  const boundaries = sections.length > 1 ? sections.slice(1) : paragraphs;
+  const middle = boundaries.length ? boundaries[Math.floor(boundaries.length / 2)].index! : contentWithoutFaq.length;
+  const beforeImage = renderMarkdown(contentWithoutFaq.slice(0, middle));
+  const afterImage = renderMarkdown(contentWithoutFaq.slice(middle));
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -223,18 +229,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
       <BlogNav />
-      <main className="relative min-h-screen overflow-hidden bg-[#f8faff] pb-24 pt-32">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_35%_at_50%_0%,rgba(99,102,241,0.10)_0%,transparent_72%)]" />
+      <main className="relative min-h-screen overflow-hidden bg-white pb-24 pt-32">
         <article className="relative mx-auto max-w-5xl px-5 sm:px-8">
-          <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_20px_70px_rgba(30,41,59,0.08),0_4px_16px_rgba(99,102,241,0.06)]">
-          <header className="px-6 pb-8 pt-10 sm:px-12 sm:pt-14">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-indigo-200 bg-indigo-50 px-4 py-2 text-[11px] font-bold uppercase tracking-[3px] text-[#6366f1]">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#6366f1]" />
-              Industrial insight
-            </div>
-            <div className="mb-4 text-sm text-slate-400">
-              <a href="/" className="hover:text-[#6366f1]">Home</a> / <a href="/blog" className="hover:text-[#6366f1]">Blog</a> / {post.title}
-            </div>
+          <header className="pb-8 pt-10 sm:pt-14">
             <h1 className="mb-5 max-w-4xl text-4xl font-black leading-[1.08] tracking-[-1.5px] text-slate-900 sm:text-6xl">
               {post.title}
             </h1>
@@ -244,29 +241,23 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </div>
           </header>
           {videoId && (
-            <div className="mx-6 mb-8 aspect-video overflow-hidden rounded-2xl bg-slate-950 sm:mx-12">
+            <div className="mb-8 aspect-video overflow-hidden rounded-2xl bg-slate-950">
               <iframe className="h-full w-full" src={`https://www.youtube-nocookie.com/embed/${videoId}`} title="Melamine processing video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
             </div>
           )}
-          {heroImage && (
-            <img
-              src={heroImage}
-              alt={post.title}
-              className="aspect-[16/9] w-full object-cover"
-            />
-          )}
           {tldr && (
-            <div className="mx-6 mt-10 rounded-2xl border border-indigo-100 bg-indigo-50 p-6 sm:mx-12 sm:p-8">
+            <div className="mt-10 rounded-2xl border border-indigo-100 bg-indigo-50 p-6 sm:p-8">
               <p className="font-bold text-[#6366f1] mb-1">TL;DR</p>
               <p className="text-slate-700">{tldr}</p>
             </div>
           )}
-          <div
-            className="px-6 py-10 text-base leading-8 text-slate-700 sm:px-12 sm:py-14 sm:text-lg"
-            dangerouslySetInnerHTML={{ __html: htmlContent }}
-          />
+          <div className="py-10 text-base leading-8 text-slate-700 sm:py-14 sm:text-lg">
+            <div dangerouslySetInnerHTML={{ __html: beforeImage }} />
+            {heroImage && <img src={heroImage} alt={post.title} className="my-10 aspect-[16/9] w-full object-cover" />}
+            <div dangerouslySetInnerHTML={{ __html: afterImage }} />
+          </div>
           {faq.length > 0 && (
-            <section className="mx-6 mb-12 rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:mx-12 sm:p-8">
+            <section className="mb-12 rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:p-8">
               <h2 className="text-3xl font-bold text-slate-900 mb-6">FAQ</h2>
               {faq.map((item, i) => (
                 <div key={i} className="mb-6">
@@ -276,7 +267,6 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               ))}
             </section>
           )}
-          </div>
         </article>
       </main>
       <Footer lang="en" />
