@@ -17,7 +17,7 @@ from pathlib import Path
 
 BLOG_DIR = Path('content/blog')
 ARTICLE_EXTENSION = '.md'
-ARTICLE_FORMAT_INSTRUCTIONS = ''
+ARTICLE_FORMAT_INSTRUCTIONS = 'The site layout owns one title, byline/date and hero. Keep JSON-LD out of prose. Place the verified video above the body, without a Relevant video heading. Use contiguous Markdown tables with matching columns and a working relevant image.'
 BLOG_STYLE_CONTRACT = {
     'version': 1,
     'framework': 'next',
@@ -34,8 +34,8 @@ BLOG_STYLE_CONTRACT = {
     'rules': [
         'Reuse BlogNav, Footer, Inter, the indigo/slate palette, rounded cards, shadows, and responsive spacing.',
         'Render Markdown headings, paragraphs, links, tables, lists, FAQ, and media with explicit site-native classes.',
-        'Render the article image as a full-width 16:9 hero.',
-        'Render YouTube links in Relevant video as responsive embedded players with thumbnails, not plain links.',
+        'Render one working relevant hero, one H1 and one shared header; remove body duplicates and visible schema.',
+        'Render one video immediately below the title/byline, without a Relevant video heading.',
         'Publish future articles to content/blog and reuse the existing /blog renderer.',
     ],
     'style_generation': 'first_publish_only',
