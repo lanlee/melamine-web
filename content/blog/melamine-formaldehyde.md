@@ -3,7 +3,10 @@ title: "Melamine Formaldehyde: 5 Uses, 2 Cure Stages, Safety Limits"
 date: "2026-09-13"
 slug: "melamine-formaldehyde"
 author: "Guangdong HanCheng Material"
-image: "/blog/assets/melamine-uses-grades-safety-hero.png"
+image: "https://images.pexels.com/photos/46199/plate-cup-colorful-cover-46199.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+image_alt: "Brightly colored bowls and plates stacked with spoons, showcasing a vibrant and modern design."
+image_credit: "Pixabay"
+image_credit_url: "https://www.pexels.com/photo/cups-and-plates-46199/"
 ---
 
 
