@@ -56,5 +56,17 @@ and `www` CNAME `7cbfee289b65a38a.vercel-dns-017.com`.
 
 ## Status
 
-Google Cloud provisioning and verification are in progress. Domain cutover and
-Vercel retirement are pending DNS access; do not treat this file as proof of cutover.
+Cloud Run is deployed at https://hancheng-web-koh3rlnupq-as.a.run.app.
+The homepage, blog index, all six articles, public assets, JavaScript, and CSS
+returned HTTP 200. The global load balancer's HTTP redirect returned HTTP 301
+and preserved the request path and query. The HTTPS URL map passed validation.
+Lint passed with five pre-existing image optimization warnings.
+
+The Vercel Git integration has been disconnected. Its existing production
+deployment currently responds with HTTP 402 / DEPLOYMENT_DISABLED.
+The Google Cloud copy is available at the URL above.
+
+Domain cutover and Vercel project deletion remain pending the owner's GoDaddy
+DNS changes and certificate activation. The owner will edit DNS manually.
+Do not treat this file as proof of cutover. Browser automation was unavailable;
+verification so far used HTTP checks and Google Cloud service/log checks.
