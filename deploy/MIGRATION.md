@@ -74,7 +74,10 @@ Verification build: `de363b60-0096-4282-b914-a3ef9a0bb414`.
 GitHub deployment run `42773900126` passed authentication, build, deploy, and
 all page checks; Cloud Run revision `hancheng-web-00002-c5j` serves that build.
 
-Domain cutover and Vercel project deletion remain pending the owner's GoDaddy
-changes to the two web records. The owner will edit DNS manually.
-Do not treat this file as proof of cutover. Browser automation was unavailable;
-verification so far used HTTP checks and Google Cloud service/log checks.
+Migration completed on 2026-11-10. Both apex and www A records resolve to
+`8.233.129.178`; the public HTTPS site returns HTTP 200 from Google Frontend.
+The old Vercel project was deleted (HTTP 204), and a subsequent lookup confirmed
+HTTP 404. Local `.vercel` metadata was removed. The old Vercel rollback described
+above is no longer available; use Cloud Run revision rollback instead.
+Browser automation was unavailable; verification used HTTP checks and Google
+Cloud service/log checks.
