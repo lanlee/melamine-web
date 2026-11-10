@@ -6,6 +6,7 @@ const links = [
   { href: "#products", en: "Products", zh: "产品" },
   { href: "#applications", en: "Applications", zh: "应用" },
   { href: "#why-us", en: "Why Us", zh: "优势" },
+  { href: "/blog", en: "Blog", zh: "博客" },
 ];
 
 interface NavProps {
@@ -43,11 +44,11 @@ export default function Nav({ lang, toggleLang, linkPrefix = "" }: NavProps) {
         </a>
 
         {/* Desktop links */}
-        <ul className="hidden lg:flex items-center gap-8 ml-auto list-none">
+        <ul className="hidden lg:flex items-center gap-6 ml-auto list-none whitespace-nowrap">
           {links.map((l) => (
             <li key={l.href}>
               <a
-                href={`${linkPrefix}${l.href}`}
+                href={l.href.startsWith("#") ? `${linkPrefix}${l.href}` : l.href}
                 className="text-sm text-slate-500 hover:text-slate-900 font-medium transition-colors duration-200"
               >
                 {lang === "en" ? l.en : l.zh}
@@ -90,7 +91,7 @@ export default function Nav({ lang, toggleLang, linkPrefix = "" }: NavProps) {
           {links.map((l) => (
             <a
               key={l.href}
-              href={`${linkPrefix}${l.href}`}
+              href={l.href.startsWith("#") ? `${linkPrefix}${l.href}` : l.href}
               onClick={() => setMenuOpen(false)}
               className="text-base text-slate-600 hover:text-slate-900 font-medium transition-colors"
             >

@@ -94,6 +94,6 @@ Yes. FDA testing found migration below 10 ppb into cold acidic food, about 250 t
 
 Buying melamine powder or MF resin? Send your grade, application and destination port and we will quote with that lot's COA, MSDS and SGS reports.
 
-[Request a quote on our contact page](https://www.hanchengmaterial.com/#contact), or email [lan@hanchengmaterial.com](mailto:lan@hanchengmaterial.com).
+[Request a quote on our contact page](https://www.hanchengmaterial.com/#contact), or email [sales@hanchengmaterial.com](mailto:sales@hanchengmaterial.com).
 
 **Guangdong HanCheng Material** — Guangzhou, China. 99.8% melamine powder with full export documentation. See [where melamine is used](https://www.hanchengmaterial.com/#applications).

@@ -83,4 +83,4 @@ Yes. A 2024 study found they are melamine-formaldehyde resin with bamboo or whea
 
 ## Ready to source melamine powder for your products?
 
-Guangdong HanCheng Material ships 3,000+ metric tons of industrial-grade melamine powder and resin every month to 400+ manufacturers across 20+ countries, with COA, MSDS, and SGS reports on every batch. [Request a quote on our contact page](https://www.hanchengmaterial.com/#contact) or [email lan@hanchengmaterial.com](mailto:lan@hanchengmaterial.com).
+Guangdong HanCheng Material ships 3,000+ metric tons of industrial-grade melamine powder and resin every month to 400+ manufacturers across 20+ countries, with COA, MSDS, and SGS reports on every batch. [Request a quote on our contact page](https://www.hanchengmaterial.com/#contact) or [email sales@hanchengmaterial.com](mailto:sales@hanchengmaterial.com).

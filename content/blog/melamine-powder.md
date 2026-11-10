@@ -102,7 +102,7 @@ No. The powder is the raw crystal; the resin is the thermoset formed when it rea
 
 HanCheng Material has shipped melamine powder from Guangzhou since 2001 — 3,000+ metric tons a month to 400+ manufacturers, every batch with COA, MSDS and SGS reports. Send your application, grade, quantity and destination port, and we will quote with documents attached.
 
-[Request a quote on our contact page](https://www.hanchengmaterial.com/#contact), or email [lan@hanchengmaterial.com](mailto:lan@hanchengmaterial.com). See where the powder goes in our [application overview](https://www.hanchengmaterial.com/#applications).
+[Request a quote on our contact page](https://www.hanchengmaterial.com/#contact), or email [sales@hanchengmaterial.com](mailto:sales@hanchengmaterial.com). See where the powder goes in our [application overview](https://www.hanchengmaterial.com/#applications).
 
 ## Structured data (JSON-LD)
 

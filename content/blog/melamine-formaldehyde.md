@@ -90,4 +90,4 @@ Food-contact rules cap it at 3 moles of formaldehyde per mole of melamine; publi
 
 HanCheng Material has supplied melamine powder from Guangzhou since 2001 — 3,000+ metric tons a month to 400+ manufacturers across 20+ countries, every batch with COA, MSDS and SGS reports. Tell us the resin you are making, your volume and destination port, and we will quote with documents.
 
-[Request a quote through our contact page](https://www.hanchengmaterial.com/#contact), or email [lan@hanchengmaterial.com](mailto:lan@hanchengmaterial.com).
+[Request a quote through our contact page](https://www.hanchengmaterial.com/#contact), or email [sales@hanchengmaterial.com](mailto:sales@hanchengmaterial.com).

@@ -81,7 +81,7 @@ Melamine-formaldehyde systems also [bind CO₂ in carbon-capture research](https
 
 ## Ready to take the next step?
 
-Guangdong HanCheng Material supplies the 99.8%-purity melamine powder behind MF resins — 3,000+ metric tons shipped monthly to 400+ manufacturers in 20+ countries, each batch with COA, MSDS and SGS reports. Check our [melamine powder spec checklist](https://hanchengmaterial.com/blog/melamine-powder), then request a quote at [hanchengmaterial.com/#contact](https://www.hanchengmaterial.com/#contact) or email [lan@hanchengmaterial.com](mailto:lan@hanchengmaterial.com).
+Guangdong HanCheng Material supplies the 99.8%-purity melamine powder behind MF resins — 3,000+ metric tons shipped monthly to 400+ manufacturers in 20+ countries, each batch with COA, MSDS and SGS reports. Check our [melamine powder spec checklist](https://hanchengmaterial.com/blog/melamine-powder), then request a quote at [hanchengmaterial.com/#contact](https://www.hanchengmaterial.com/#contact) or email [sales@hanchengmaterial.com](mailto:sales@hanchengmaterial.com).
 
 ## Sources
 

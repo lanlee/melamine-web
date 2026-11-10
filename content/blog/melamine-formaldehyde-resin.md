@@ -71,7 +71,7 @@ Between pH 7 and 8, methylene bridges dominate; above 9, hydrolysis-prone methyl
 
 ## Buy MF-grade melamine
 
-Every grade above starts with high-purity [melamine powder](https://hanchengmaterial.com/blog/melamine-powder) — see our [melamine uses and grades primer](https://www.hanchengmaterial.com/blog/melamine-uses-grades-safety) for background. Guangdong HanCheng Material ships 3,000+ metric tons monthly to 400+ manufacturers in 20+ countries, each batch with COA, MSDS and SGS reports. Request a quote at [hanchengmaterial.com/#contact](https://www.hanchengmaterial.com/#contact) or email [lan@hanchengmaterial.com](mailto:lan@hanchengmaterial.com).
+Every grade above starts with high-purity [melamine powder](https://hanchengmaterial.com/blog/melamine-powder) — see our [melamine uses and grades primer](https://www.hanchengmaterial.com/blog/melamine-uses-grades-safety) for background. Guangdong HanCheng Material ships 3,000+ metric tons monthly to 400+ manufacturers in 20+ countries, each batch with COA, MSDS and SGS reports. Request a quote at [hanchengmaterial.com/#contact](https://www.hanchengmaterial.com/#contact) or email [sales@hanchengmaterial.com](mailto:sales@hanchengmaterial.com).
 
 ## Sources
 
