@@ -66,7 +66,15 @@ The Vercel Git integration has been disconnected. Its existing production
 deployment currently responds with HTTP 402 / DEPLOYMENT_DISABLED.
 The Google Cloud copy is available at the URL above.
 
+The certificate is ACTIVE for both hostnames. Its two DNS validation CNAMEs
+are present in GoDaddy and must remain for renewal. A Cloud Build check against
+the reserved load balancer IP verified valid HTTPS, HTTP 200 for the homepage
+and an article, and the apex-to-www HTTP 301 redirect with path/query preserved.
+Verification build: `de363b60-0096-4282-b914-a3ef9a0bb414`.
+GitHub deployment run `42773900126` passed authentication, build, deploy, and
+all page checks; Cloud Run revision `hancheng-web-00002-c5j` serves that build.
+
 Domain cutover and Vercel project deletion remain pending the owner's GoDaddy
-DNS changes and certificate activation. The owner will edit DNS manually.
+changes to the two web records. The owner will edit DNS manually.
 Do not treat this file as proof of cutover. Browser automation was unavailable;
 verification so far used HTTP checks and Google Cloud service/log checks.
