@@ -1,0 +1,47 @@
+name: Deploy to Google Cloud
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: hancheng-web-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      IMAGE: asia-southeast1-docker.pkg.dev/hancheng-melamine/hancheng-web/site:${{ github.sha }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093 # v3
+        with:
+          project_id: hancheng-melamine
+          workload_identity_provider: projects/327627621427/locations/global/workloadIdentityPools/hancheng-github/providers/github
+          service_account: hancheng-web-deploy@hancheng-melamine.iam.gserviceaccount.com
+      - uses: google-github-actions/setup-gcloud@aa5489c8933f4cc7a4f7d45035b3b1440c9c10db # v3
+      - name: Build and publish container
+        run: |
+          gcloud auth configure-docker asia-southeast1-docker.pkg.dev --quiet
+          docker build --tag "$IMAGE" .
+          docker push "$IMAGE"
+      - name: Deploy
+        run: |
+          gcloud run deploy hancheng-web --image="$IMAGE" \
+            --project=hancheng-melamine --region=asia-southeast1 --quiet
+      - name: Verify deployed pages
+        run: |
+          SITE_URL=$(gcloud run services describe hancheng-web --project=hancheng-melamine --region=asia-southeast1 --format='value(status.url)')
+          curl --fail --retry 3 "$SITE_URL/" --output /dev/null
+          curl --fail --retry 3 "$SITE_URL/blog" --output /dev/null
+          for article in content/blog/*.md; do
+            slug=$(basename "$article" .md)
+            curl --fail --retry 3 "$SITE_URL/blog/$slug" --output /dev/null
+          done

@@ -1,0 +1,13 @@
+name: hancheng-web-https
+defaultService: https://www.googleapis.com/compute/v1/projects/hancheng-melamine/global/backendServices/hancheng-web-backend
+hostRules:
+  - hosts:
+      - hanchengmaterial.com
+    pathMatcher: apex-redirect
+pathMatchers:
+  - name: apex-redirect
+    defaultUrlRedirect:
+      hostRedirect: www.hanchengmaterial.com
+      httpsRedirect: true
+      redirectResponseCode: MOVED_PERMANENTLY_DEFAULT
+      stripQuery: false

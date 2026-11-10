@@ -1,0 +1,8 @@
+node_modules
+.next
+.git
+.vercel
+.env*
+*.log
+.DS_Store
+gha-creds-*.json

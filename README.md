@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# HanCheng Material website
 
-## Getting Started
+Next.js website for https://www.hanchengmaterial.com, including articles in
+`content/blog`. Requires Node.js 24 and npm.
 
-First, run the development server:
+## Development
 
-```bash
+```sh
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Google Cloud hosting
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Project: `hancheng-melamine`
+- Cloud Run service: `hancheng-web`, region `asia-southeast1`
+- Runtime service account: `hancheng-web@hancheng-melamine.iam.gserviceaccount.com`
+- Global load balancer address: `8.233.129.178` (`hancheng-web-ip`)
+- HTTPS certificate: `hancheng-web-cert` in Certificate Manager
+- Certificate map: `hancheng-web-map`
+- Canonical hostname: `www.hanchengmaterial.com`; apex and HTTP redirect to HTTPS www.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The Dockerfile builds Next.js standalone output and includes public assets and
+all Markdown articles. No production environment variables are currently needed.
+The runtime identity has no project-level data access roles.
 
-## Learn More
+Pushes to `main` deploy through `.github/workflows/deploy-google-cloud.yml`.
+GitHub authenticates using Workload Identity Federation restricted to this
+repository's numeric ID and `main` branch; no service-account key is stored.
+The workflow builds an immutable commit-tagged image, deploys it, and checks the
+homepage, blog index, and every article.
 
-To learn more about Next.js, take a look at the following resources:
+Manual deployment using an authenticated Google Cloud CLI:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```sh
+gcloud run deploy hancheng-web --source=. --project=hancheng-melamine \
+  --region=asia-southeast1 --port=8080 --memory=512Mi --cpu=1 \
+  --min-instances=0 --max-instances=5 \
+  --service-account=hancheng-web@hancheng-melamine.iam.gserviceaccount.com
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Load balancer routing definitions are in `deploy/`. See
+`deploy/MIGRATION.md` for DNS cutover and migration status.

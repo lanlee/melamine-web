@@ -33,8 +33,9 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
-# vercel
+# Local deployment metadata and temporary CI credentials
 .vercel
+gha-creds-*.json
 
 # typescript
 *.tsbuildinfo

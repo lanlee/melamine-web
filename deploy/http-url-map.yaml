@@ -1,0 +1,6 @@
+name: hancheng-web-http
+defaultUrlRedirect:
+  hostRedirect: www.hanchengmaterial.com
+  httpsRedirect: true
+  redirectResponseCode: MOVED_PERMANENTLY_DEFAULT
+  stripQuery: false
